@@ -1,8 +1,10 @@
 export interface ICardInfoProps  {
     created_at?:string;
     story_title?:string;
-    author?: string
-    story_id?: number;
+    author?: string;
+    objectID?:string;
+    parent_id?:string;
+    story_id?:string;
     story_url?: string;
-    updateFavorites?:(id:number) => void;
+    created_at_i?: number;
   }

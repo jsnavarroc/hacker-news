@@ -12,11 +12,34 @@ const calculateHours = (date:string) => {
 
 }
 
+const updateFavorites = (props: ICardInfoProps, favoritesIDs:ICardInfoProps[], updateFavoritesD:any) => {
+  const {objectID, parent_id, story_id,created_at_i} = props
+  const newFavoritesIDs = favoritesIDs.slice() as ICardInfoProps[];
+
+  const existNewsKey =newFavoritesIDs.findIndex((news:ICardInfoProps) =>  news.parent_id === parent_id && news.objectID ===objectID && news.story_id === story_id && news.created_at_i === created_at_i )
+ 
+  if(existNewsKey!==-1){
+   
+    const updateData=newFavoritesIDs.filter((news) =>  news.parent_id !== parent_id && news.objectID !==objectID && news.story_id !== story_id && news.created_at_i !== created_at_i)
+    
+      updateFavoritesD(updateData)
+  }else{
+    updateFavoritesD([...newFavoritesIDs,props]) 
+  }
+}
+
 const useCardInfo = (props: ICardInfoProps) => {
-//   const { favoritesIDs } = useFavoritesIDsSelector();
-//   const { updateFavoritesD } = useFavoritesIDsDispatch();
-  const [img, setImg] = useState(hollowHeart);
+  const { favoritesIDs } = useFavoritesIDsSelector();
+  const { updateFavoritesD } = useFavoritesIDsDispatch();
+  const [img, setImg] = useState(() =>{
+    const {objectID, parent_id, story_id, created_at_i} = props
+    const existNewsKey =favoritesIDs.findIndex((news:ICardInfoProps) => news.parent_id === parent_id && news.objectID ===objectID && news.story_id === story_id && news.created_at_i === created_at_i )
+
+    return existNewsKey!==-1? filledHeart:hollowHeart
+  });
   const { created_at, author, story_title } = props;
+  
+ 
   const toggleImage = () => {  
     if (img === hollowHeart) {
       setImg(filledHeart);
@@ -24,12 +47,12 @@ const useCardInfo = (props: ICardInfoProps) => {
       setImg(hollowHeart);
     }
   };
-
+  
 
   const onClick = (e: any) => {
     e.preventDefault();
     toggleImage();
-    props?.updateFavorites && props?.story_id && props?.updateFavorites(props?.story_id);
+    props?.objectID && updateFavorites(props, favoritesIDs, updateFavoritesD);
   }
   return {
     onClick,

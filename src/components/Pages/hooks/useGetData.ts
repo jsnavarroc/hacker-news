@@ -16,13 +16,15 @@ const getData = async (setProcess: React.Dispatch<React.SetStateAction<IuseGetDa
     
     try {
         const response = await axios.get("https://hn.algolia.com/api/v1/search_by_date?query=reactjs&page=0");
-      
         const dataFilter = response.data?.hits?.map((news:any) => ({
             created_at:news?.created_at,
             story_title:news?.story_title,
             author: news?.author,
+            objectID: news?.objectID,
+            parent_id: news?.parent_id,
             story_id: news?.story_id,
             story_url: news?.story_url,
+            created_at_i: news?.created_at_i,
         }))
         setProcess((prev) => ({
             ...prev,
@@ -53,6 +55,13 @@ const useGetData = () => {
 
       useEffect(() => {
         getData(setProcess)
+        return () => {
+            setProcess({
+                loading: false,
+                response: [],
+                error: null,
+              })
+        }
       }, [])
    
       useEffect(() => {
