@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-export const Card = styled(motion.div)`
+export const Card = styled(motion.a)`
+ text-decoration: none;
   cursor: pointer;
   height: 5.625rem;
   opacity: 0.8;
@@ -19,6 +20,9 @@ export const Card = styled(motion.div)`
     min-height: 5.625rem;
     transition: all 0.3s ease-in-out;
   }
+`;
+export const LikeIncon = styled(motion.img)`
+
 `;
 
 export const ContainerCards = styled.div`

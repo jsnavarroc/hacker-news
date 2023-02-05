@@ -4,6 +4,7 @@ import CardList from "../organims/CardList"
 import InputList from "../organims/InputList"
 import PaginationPage from "../organims/PaginationPage"
 
+
 const Screen1 = () => {
     return (
       <>

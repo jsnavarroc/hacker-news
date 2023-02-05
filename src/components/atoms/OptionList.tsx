@@ -34,7 +34,7 @@ export const ModalContainer = styled.div`
   padding: 0rem 0.5rem 0rem 0.625rem;
   box-shadow: 0 2px 2px 0 #dad8d8;
   background-color: #fff; 
-  z-index: 999;
+  z-index: 2;
   transition: all 0.3s ease-in-out;
   @media (max-width: 768px) {
     left: 6.7%;

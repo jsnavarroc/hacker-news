@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="sc-pyfCe eNNDel"
+>
+  <div
+    className="sc-gswNZR jAJqXd"
+  >
+    <div
+      className="sc-ftTHYK bCYxRq"
+      color="rgb(37, 83, 125)"
+      size={50}
+    />
+  </div>
+</div>
+`;

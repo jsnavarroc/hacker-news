@@ -12,9 +12,9 @@ const Pagination = (props:IPaginationProps) => {
           <PageOption className="pageChangeOption">
             <TriangleIconLeft />
           </PageOption>
-          {Array.from(Array(pages).keys()).map((item) => {
+          {Array.from(Array(pages).keys()).map((item, key) => {
             return (
-              <PageOption className="pageOption">
+              <PageOption key={key} className="pageOption">
                 <OptionText>{item + 1}</OptionText>
               </PageOption>
             );
