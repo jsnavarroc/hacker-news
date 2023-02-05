@@ -22,7 +22,6 @@ const PaginationPage = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, [pages]);
   
-    console.log('>>', pages);
     
     return (<Pagination pages={pages}/>)
 }

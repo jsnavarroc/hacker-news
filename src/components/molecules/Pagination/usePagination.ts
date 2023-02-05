@@ -48,7 +48,6 @@ const usePagination = (props: IPaginationProps) => {
     setPageSelected(key)
   }, []); 
 
-  console.log('>>>', props.pages);
   useEffect(() => {
     setpageSelectedD(pageSelected)
   },[pageSelected])
