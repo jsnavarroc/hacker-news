@@ -1,11 +1,11 @@
 import styled from "styled-components";
+import { Triangle } from "../../assets/icons/Icons";
 import { BLUE_COLOR, GREY_COLOR } from "../resources/constants_colors";
 interface PageOptionProps {
     active?: boolean;
 }
 export const PageOption = styled.div<PageOptionProps>`
-  width: 2rem;
-  height: 2rem;
+  min-width: 2rem;
   margin-left: 0.5rem;
   padding: 0.375rem 0.75rem 0.25rem;
   border-radius: 6px;
@@ -13,7 +13,8 @@ export const PageOption = styled.div<PageOptionProps>`
   background-color: #fff;
   background-color: ${props => (props.active ? `${BLUE_COLOR}` : '#fff')};
   cursor: pointer;
-  text-align: center;
+  display: flex;
+  justify-content: center;
   &.pageOption:hover{
     border-color: ${BLUE_COLOR};
     background-color: ${BLUE_COLOR};
@@ -24,8 +25,8 @@ export const PageOption = styled.div<PageOptionProps>`
   &.pageChangeOption:hover{
     border-color: ${GREY_COLOR};
     background-color: ${GREY_COLOR};
-    & > span  {
-      color:  white;
+    & > svg  {
+      fill:  white;
     }
   };
   & > span {
@@ -47,4 +48,14 @@ export const ContainerPagination = styled.div`
    justify-content: center;
    margin-top: 6rem;
    margin-bottom: 6rem;
+`
+
+export const TriangleIconLeft = styled(Triangle)`
+  transform: rotate(270deg);
+  width: 0.9rem;
+`
+
+export const TriangleIconRight = styled(Triangle)`
+  transform: rotate(90deg);
+  width: 0.9rem;
 `

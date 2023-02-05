@@ -1,107 +1,12 @@
+import Page1 from "./components/Pages/Page1";
 
-import Navbar from './components/molecules/Navbar';
-import { BoxTaps, Tap } from './components/atoms/Taps';
-import { useState } from 'react';
-import { Card, ContainerCards, ContentCard,  LeftColumn, RightColumn, TitleCard } from './components/atoms/Card';
 
-import { BoxPagination, ContainerPagination, PageOption } from './components/atoms/Paginator';
-import {  InfoCard, OptionText, SmallTitle, TitleTap } from './components/atoms/Paragraph';
-import clockSVG from './assets/clock.svg'
-import filledHeart from './assets/icons/filledHeart.svg'
-import hollowHeart from './assets/icons/hollowHeart.svg'
-import InputList from './components/organims/InputList';
 
 
 function App() {
-  const [img, setImg] = useState(hollowHeart);
-
-  const toggleImage = () => {
-    if (img === hollowHeart) {
-      setImg(filledHeart);
-    } else {
-      setImg(hollowHeart);
-    }
-  };
-  const [route, setRoute] = useState('')
   return (
     <div className="App">
-      <Navbar/>
-      <BoxTaps>
-        <Tap active={route === 'All'} onClick={() => setRoute('All')}>
-          <TitleTap>All</TitleTap>
-        </Tap>
-        <Tap active={route === 'MyFaves'} onClick={() => setRoute('MyFaves')}>
-          <TitleTap>My Faves</TitleTap>
-        </Tap>
-      </BoxTaps>
-      <InputList/>
-      <ContainerCards>
-        <Card 
-        onClick={toggleImage}
-        whileHover={{ opacity: 0.5}}
-        whileTap={{opacity:0.5}}
-        transition={{  duration: 0.1 }}
-        >
-        <ContentCard>
-            <LeftColumn>
-
-              <TitleCard>
-                 <img src={clockSVG}/>
-                 <SmallTitle>3 hours ago by author</SmallTitle>         
-              </TitleCard>
-                <InfoCard>Yes, React is taking over front-end development. The question is whay.</InfoCard> 
-            </LeftColumn>
-          
-            <RightColumn>
-                <img src={img}/>
-            </RightColumn>
-        </ContentCard>
-        </Card>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-      </ContainerCards>
-      <ContainerPagination>
-        <BoxPagination>
-          <PageOption className='pageChangeOption'>
-            <OptionText >{'<'}</OptionText>
-          </PageOption>
-          <PageOption  className='pageOption'>
-            <OptionText>1</OptionText>
-          </PageOption>
-          <PageOption  className='pageOption'>
-            <OptionText>2</OptionText>
-          </PageOption>
-          <PageOption className='pageOption'>
-            <OptionText>3</OptionText>
-          </PageOption>
-          <PageOption className='pageOption'>
-            <OptionText>4</OptionText>
-          </PageOption>
-          <PageOption className='pageOption'>
-            <OptionText>5</OptionText>
-          </PageOption>
-          <PageOption className='pageOption'>
-            <OptionText>6</OptionText>
-          </PageOption>
-          <PageOption className='pageOption'>
-            <OptionText>7</OptionText>
-          </PageOption>
-          <PageOption className='pageOption'>
-            <OptionText>8</OptionText>
-          </PageOption>
-          <PageOption className='pageOption'>
-            <OptionText>9</OptionText>
-          </PageOption>
-          <PageOption className='pageChangeOption'>
-            <OptionText>{'>'}</OptionText>
-          </PageOption>
-        </BoxPagination>
-      </ContainerPagination>
+      <Page1/> 
     </div>
   );
 }
