@@ -5,6 +5,7 @@ export const SET_TECHNOLOGY = 'johan/SET_TECHNOLOGY';
 export const CLEAN_TECHNOLOGY= 'johan/CLEAN_TECHNOLOGY';
 export const SET_TAP_LIST = 'johan/SET_TAP_LIST';
 export const CLEAN_TAP_LIST= 'johan/CLEAN_TAP_LIST';
+export const SET_PAGE_SELECTED= 'johan/SET_PAGE_SELECTED';
 
 /* Action Creators */
 export const setTechnology = (technology:string) => {
@@ -34,4 +35,12 @@ export const cleanTapList = () => {
     };
 };
 
+export const pageSelected = (pageSelected:number) => {
+    return {
+        type: SET_PAGE_SELECTED,
+        payload: {
+            pageSelected,
+        },
+    };
+};
 

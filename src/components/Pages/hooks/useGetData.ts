@@ -14,7 +14,7 @@ const getData = async (filters:IuseFiltersSelector, setProcess: React.Dispatch<R
     }));
     
     try {
-        const response = await axios.get(`https://hn.algolia.com/api/v1/search_by_date?query=${filters.technology}&page=0`);
+        const response = await axios.get(`https://hn.algolia.com/api/v1/search_by_date?query=${filters.technology}&page=${filters.pageSelected}`);
         const dataFilter = response.data?.hits?.map((news:any) => ({
             created_at:news?.created_at,
             story_title:news?.story_title,
@@ -41,7 +41,7 @@ const getData = async (filters:IuseFiltersSelector, setProcess: React.Dispatch<R
         })); 
     }
 
- }
+}
 
 
 const useGetData = () => {
@@ -52,7 +52,7 @@ const useGetData = () => {
         loading: false,
         response: [],
         error: null,
-      }));
+    }));
 
       useEffect(() => {
         if(filters.tap===ALL){
@@ -69,7 +69,7 @@ const useGetData = () => {
             setProcess((prev) => ( {...prev, response: favoritesIDs}));
         }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [filters.technology, filters.tap])
+      }, [filters.technology, filters.tap, filters.pageSelected])
  
       useEffect(() => {
         if(process.loading === false && (process?.response?.length > 0 || process.error)){

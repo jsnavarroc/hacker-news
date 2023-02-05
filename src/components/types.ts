@@ -23,10 +23,15 @@ export interface ICardInfoProps  {
   export interface IuseFiltersSelector {
     technology:string;
     tap:string;
+    pageSelected:number;
 }
 
 export interface IuseGetData {
   loading: boolean;
   response:  [];
   error: unknown;
+}
+
+export interface IPaginationProps {
+  pages: number;
 }

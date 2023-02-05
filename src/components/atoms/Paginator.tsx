@@ -4,17 +4,16 @@ import { BLUE_COLOR, GREY_COLOR } from "../resources/constants_colors";
 interface PageOptionProps {
     active?: boolean;
 }
-export const PageOption = styled.div<PageOptionProps>`
+export const PageOption = styled.button<PageOptionProps>`
   min-width: 2rem;
   margin-left: 0.5rem;
   padding: 0.375rem 0.75rem 0.25rem;
   border-radius: 6px;
   border: solid 1px #d9d9d9;
-  background-color: #fff;
   background-color: ${props => (props.active ? `${BLUE_COLOR}` : '#fff')};
   cursor: pointer;
   display: flex;
-  justify-content: center;
+  place-items: center;
   &.pageOption:hover{
     border-color: ${BLUE_COLOR};
     background-color: ${BLUE_COLOR};
@@ -29,10 +28,18 @@ export const PageOption = styled.div<PageOptionProps>`
       fill:  white;
     }
   };
+  &.pageInfinityOption:hover{
+    border-color: ${GREY_COLOR};
+    background-color: ${GREY_COLOR};
+    & > span  {
+      color:  white;
+    }
+  };
   & > span {
-    width: 0.5rem;
+    user-select:none;
+    /* width: 0.5rem; */
     height: 1.375rem;
-    color: ${props => (props.active ? `${BLUE_COLOR}` : '#606060')};
+    color: ${props => (props.active ? `white` : `${GREY_COLOR}`)};
   }
 `;
 

@@ -1,4 +1,4 @@
-import { setTechnology, cleanTechnology, setTapList, cleanTapList } from "../../reducers/filters/actions";
+import { setTechnology, cleanTechnology, setTapList, cleanTapList, pageSelected } from "../../reducers/filters/actions";
 import useActions from "../useActions";
 
 const useFiltersDispatch = () => {
@@ -6,11 +6,13 @@ const useFiltersDispatch = () => {
     const cleanTechnologyD = useActions(cleanTechnology);
     const setTapListD = useActions(setTapList);
     const cleanTapListD = useActions(cleanTapList);
+    const setpageSelectedD= useActions(pageSelected);
     return {
       setTechnologyD,
       cleanTechnologyD,
       setTapListD,
       cleanTapListD,
+      setpageSelectedD
     };
 };
 

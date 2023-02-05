@@ -1,9 +1,16 @@
 
-import { SET_TECHNOLOGY, CLEAN_TECHNOLOGY, SET_TAP_LIST, CLEAN_TAP_LIST } from './actions';
+import {
+  SET_TECHNOLOGY,
+  CLEAN_TECHNOLOGY,
+  SET_TAP_LIST,
+  CLEAN_TAP_LIST,
+  SET_PAGE_SELECTED,
+} from "./actions";
 // reducer
 const initialState = {
   technology:'react',
-  tap:'All'
+  tap:'All',
+  pageSelected:0
 };
 
  const filters =  (state = initialState, action:any) => {
@@ -23,6 +30,10 @@ const initialState = {
     }
     case CLEAN_TAP_LIST: {
       stateCopy.tap =  initialState.tap;
+      return stateCopy;
+    }
+    case SET_PAGE_SELECTED: {
+      stateCopy.pageSelected =  action?.payload?.pageSelected as number;
       return stateCopy;
     }
     default: {
