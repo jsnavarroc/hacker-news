@@ -22,6 +22,7 @@ export interface ICardInfoProps  {
 
   export interface IuseFiltersSelector {
     technology:string;
+    tap:string;
 }
 
 export interface IuseGetData {
