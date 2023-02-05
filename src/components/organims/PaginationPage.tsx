@@ -3,7 +3,7 @@ import Pagination from "../molecules/Pagination/Pagination"
 
 const PaginationPage = () => {
 
-    const [pages, setPages] = useState(4);
+    const [pages, setPages] = useState(9);
 
     const handleResize = () => {
       const width = window.innerWidth;
