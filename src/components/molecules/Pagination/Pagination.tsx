@@ -23,6 +23,8 @@ const Pagination = (props: IPaginationProps) => {
    pageSelected,
  } = usePagination(props);
 
+ 
+
   const Options=[]
   for (let index = numberPages.start; index <numberPages.end; index++) {
     Options.push(
