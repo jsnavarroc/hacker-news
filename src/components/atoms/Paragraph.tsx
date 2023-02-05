@@ -38,15 +38,25 @@ export const TitleTap =  styled(Normal)`
     font-weight: 500;
     line-height: 1.75;
 `
-export const InfoCard = styled.p`
-  margin: 0.375rem 1rem 0.875rem 0;
+
+const NormalParagraph = styled.p`
   font-family: Roboto;
   font-size: 0.875rem;
-  font-weight: 500;
   font-stretch: normal;
   font-style: normal;
+`
+export const InfoCard = styled(NormalParagraph)`
+  margin: 0.375rem 1rem 0.875rem 0;
+  font-weight: 500;
   line-height: 1.43;
   letter-spacing: 0.25px;
-  color: #6b6b6b    
+  color: #6b6b6b;
+`
+
+export const OptionInputText = styled(NormalParagraph)`
+    font-weight: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    color: #343434;
 `
 

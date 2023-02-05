@@ -8,13 +8,16 @@ export const Card = styled(motion.div)`
   border-radius: 6px;
   border: solid 1px #979797;
   background-color: #fff;
+  transition: all 0.3s ease-in-out;
   @media (max-width: 768px) {
     width: 100%;
     min-width: 12rem;
+    transition: all 0.3s ease-in-out;
   }
   @media (max-width: 360px) {
     height: auto;
     min-height: 5.625rem;
+    transition: all 0.3s ease-in-out;
   }
 `;
 
@@ -51,12 +54,12 @@ export const LeftColumn = styled.div`
 
 
 export const RightColumn = styled.div`
-   background-color: rgba(96, 96, 96, 0.06);
-   border-radius: 6px;
-   width: 4.25rem;
    display: flex;
    align-items: center;
    justify-content: center;
+   background-color: rgba(96, 96, 96, 0.06);
+   border-radius: 6px;
+   width: 4.25rem;
    @media (max-width: 360px) {
     width: 100%;
     padding:  1rem;
@@ -74,7 +77,7 @@ export const TitleCard = styled.div`
 `;
 
 
-export const IconContainer = styled(motion.div)`
+export const IconContainer = styled.div`
   width: 24px;
   height: 22px;
   position: relative;

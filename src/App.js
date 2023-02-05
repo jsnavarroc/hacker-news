@@ -2,15 +2,17 @@
 import Navbar from './components/molecules/Navbar';
 import { BoxTaps, Tap } from './components/atoms/Taps';
 import { useState } from 'react';
-import { Card, ContainerCards, ContentCard, IconContainer, LeftColumn, RightColumn, TitleCard } from './components/atoms/Card';
-import { Input } from './components/atoms/Input';
+import { Card, ContainerCards, ContentCard,  LeftColumn, RightColumn, TitleCard } from './components/atoms/Card';
+
 import { BoxPagination, ContainerPagination, PageOption } from './components/atoms/Paginator';
 import {  InfoCard, OptionText, SmallTitle, TitleTap } from './components/atoms/Paragraph';
-import clockSVG from './assets/icons/clock.svg'
+import clockSVG from './assets/clock.svg'
 import filledHeart from './assets/icons/filledHeart.svg'
 import hollowHeart from './assets/icons/hollowHeart.svg'
+import InputList from './components/organims/InputList';
 
-const Heart = () => {
+
+function App() {
   const [img, setImg] = useState(hollowHeart);
 
   const toggleImage = () => {
@@ -20,19 +22,6 @@ const Heart = () => {
       setImg(hollowHeart);
     }
   };
-
-  return (
-    <IconContainer
-      whileHover={{ scale: 1.2}}
-      whileTap={{opacity:0.5}}
-      onClick={toggleImage}
-      animate={{ backgroundImage: `url('${img}')` }}
-      transition={{  duration: 0.1 }}
-    />
-  );
-};
-
-function App() {
   const [route, setRoute] = useState('')
   return (
     <div className="App">
@@ -45,9 +34,14 @@ function App() {
           <TitleTap>My Faves</TitleTap>
         </Tap>
       </BoxTaps>
-      <Input/>
+      <InputList/>
       <ContainerCards>
-        <Card>
+        <Card 
+        onClick={toggleImage}
+        whileHover={{ opacity: 0.5}}
+        whileTap={{opacity:0.5}}
+        transition={{  duration: 0.1 }}
+        >
         <ContentCard>
             <LeftColumn>
 
@@ -59,7 +53,7 @@ function App() {
             </LeftColumn>
           
             <RightColumn>
-                <Heart/>
+                <img src={img}/>
             </RightColumn>
         </ContentCard>
         </Card>
