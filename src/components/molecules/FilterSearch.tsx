@@ -1,11 +1,13 @@
 import { ButtonList, ContainerInput, InputFilter, TriangleIcon } from "../atoms/Input";
 interface IFilterSearchProps {
-    onClick:() => void
+    onClick:(e:any) => void;
+    onChange:(e:any) => void;
+    value:string;
 }
 const FilterSearch = (props:IFilterSearchProps) => {
     return(
        <ContainerInput>
-        <InputFilter/>
+        <InputFilter  onChange={props.onChange} placeholder={"Search technology"} value={props.value}/>
         <ButtonList onClick={props.onClick}>
             <TriangleIcon />
         </ButtonList>

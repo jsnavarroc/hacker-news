@@ -1,21 +1,18 @@
 import {useState, useEffect} from 'react';
 import axios, { AxiosResponse } from "axios";
 import useDataNewsDispatch from '../../../redux/hooks/dispatchers/useNewsDispatch';
+import useFiltersSelector from '../../../redux/hooks/selectors/useFiltersSelector';
+import { IuseFiltersSelector, IuseGetData } from '../../types';
 
-interface IuseGetData {
-    loading: boolean;
-    response:  [];
-    error: unknown;
-}
 
-const getData = async (setProcess: React.Dispatch<React.SetStateAction<IuseGetData>>) => {
+const getData = async (filters:IuseFiltersSelector, setProcess: React.Dispatch<React.SetStateAction<IuseGetData>>) => {
     setProcess((prev) => ({
         ...prev,
         loading: true,
     }));
     
     try {
-        const response = await axios.get("https://hn.algolia.com/api/v1/search_by_date?query=reactjs&page=0");
+        const response = await axios.get(`https://hn.algolia.com/api/v1/search_by_date?query=${filters.technology}&page=0`);
         const dataFilter = response.data?.hits?.map((news:any) => ({
             created_at:news?.created_at,
             story_title:news?.story_title,
@@ -47,14 +44,15 @@ const getData = async (setProcess: React.Dispatch<React.SetStateAction<IuseGetDa
 
 const useGetData = () => {
     const {setDataNewsD} = useDataNewsDispatch();
-    const [process, setProcess] = useState<IuseGetData>({
+    const filters = useFiltersSelector()
+    const [process, setProcess] = useState<IuseGetData>(() =>({
         loading: false,
         response: [],
         error: null,
-      });
+      }));
 
       useEffect(() => {
-        getData(setProcess)
+        getData(filters, setProcess)
         return () => {
             setProcess({
                 loading: false,
@@ -62,7 +60,9 @@ const useGetData = () => {
                 error: null,
               })
         }
-      }, [])
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [filters.technology])
+      
    
       useEffect(() => {
         if(process.loading === false && (process?.response?.length > 0 || process.error)){

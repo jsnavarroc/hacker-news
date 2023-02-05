@@ -28,7 +28,7 @@ const OptionsInput = (props:IOptionsInputProps) => {
           initial="closed"
           animate={isOpen ? "open" : "closed"}>
             {options.map((option, key) => (
-              <BoxOption key={`${key}-option`}>
+              <BoxOption key={`${key}-option`} onClick ={() => props.onChange(option.text)}>
                 <IconOption src={option.icon} />
                 <OptionInputText>{option.text}</OptionInputText>
               </BoxOption>

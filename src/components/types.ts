@@ -15,6 +15,17 @@ export interface ICardInfoProps  {
   };
   
   export interface IOptionsInputProps {
-    options:OptionI[],
-    isOpen:boolean
+    options:OptionI[];
+    isOpen:boolean;
+    onChange: (option:string) => void;
   }
+
+  export interface IuseFiltersSelector {
+    technology:string;
+}
+
+export interface IuseGetData {
+  loading: boolean;
+  response:  [];
+  error: unknown;
+}
