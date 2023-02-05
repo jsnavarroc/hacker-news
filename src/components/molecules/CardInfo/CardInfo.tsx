@@ -10,6 +10,7 @@ import useCardInfo from './useCardInfo';
 
 
 const CardInfo = (props:ICardInfoProps) => {
+
   const { onClick, horasRedondeadas, img, author, story_title } = useCardInfo(props);
 
     return (

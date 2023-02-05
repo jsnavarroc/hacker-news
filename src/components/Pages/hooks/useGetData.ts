@@ -1,8 +1,10 @@
 import {useState, useEffect} from 'react';
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import useDataNewsDispatch from '../../../redux/hooks/dispatchers/useNewsDispatch';
 import useFiltersSelector from '../../../redux/hooks/selectors/useFiltersSelector';
 import { IuseFiltersSelector, IuseGetData } from '../../types';
+import useFavoritesIDsSelector from '../../../redux/hooks/selectors/useFavoritesIDsSelector';
+import { ALL, MY_FAVES } from '../../resources/constants_app';
 
 
 const getData = async (filters:IuseFiltersSelector, setProcess: React.Dispatch<React.SetStateAction<IuseGetData>>) => {
@@ -45,6 +47,7 @@ const getData = async (filters:IuseFiltersSelector, setProcess: React.Dispatch<R
 const useGetData = () => {
     const {setDataNewsD} = useDataNewsDispatch();
     const filters = useFiltersSelector()
+    const {favoritesIDs} = useFavoritesIDsSelector()
     const [process, setProcess] = useState<IuseGetData>(() =>({
         loading: false,
         response: [],
@@ -52,18 +55,22 @@ const useGetData = () => {
       }));
 
       useEffect(() => {
-        getData(filters, setProcess)
-        return () => {
+        if(filters.tap===ALL){
+          getData(filters, setProcess);
+          return () => {
             setProcess({
-                loading: false,
-                response: [],
-                error: null,
-              })
+              loading: false,
+              response: [],
+              error: null,
+            });
+          };
+        }
+        if(filters.tap===MY_FAVES){
+            setProcess((prev) => ( {...prev, response: favoritesIDs}));
         }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [filters.technology])
-      
-   
+      }, [filters.technology, filters.tap])
+ 
       useEffect(() => {
         if(process.loading === false && (process?.response?.length > 0 || process.error)){
           setDataNewsD(process);

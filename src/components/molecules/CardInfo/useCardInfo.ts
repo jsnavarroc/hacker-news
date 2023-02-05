@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ICardInfoProps } from "../../types";
 import { filledHeart, hollowHeart } from "../../../assets/icons/Icons";
 import useFavoritesIDsSelector from "../../../redux/hooks/selectors/useFavoritesIDsSelector";
 import useFavoritesIDsDispatch from "../../../redux/hooks/dispatchers/useFavoritesIDsDispatch";
-
 const calculateHours = (date:string) => {
     const currentDate = Date.now();
     const originalDate = new Date(date).getTime();
@@ -31,12 +30,13 @@ const updateFavorites = (props: ICardInfoProps, favoritesIDs:ICardInfoProps[], u
 const useCardInfo = (props: ICardInfoProps) => {
   const { favoritesIDs } = useFavoritesIDsSelector();
   const { updateFavoritesD } = useFavoritesIDsDispatch();
-  const [img, setImg] = useState(() =>{
-    const {objectID, parent_id, story_id, created_at_i} = props
-    const existNewsKey =favoritesIDs.findIndex((news:ICardInfoProps) => news.parent_id === parent_id && news.objectID ===objectID && news.story_id === story_id && news.created_at_i === created_at_i )
+  const [img, setImg] = useState(hollowHeart);
 
-    return existNewsKey!==-1? filledHeart:hollowHeart
-  });
+  useEffect(() => {
+    const {objectID, parent_id, story_id, created_at_i} = props   
+    const existNewsKey =favoritesIDs.findIndex((news:ICardInfoProps) => news.parent_id === parent_id && news.objectID ===objectID && news.story_id === story_id && news.created_at_i === created_at_i )
+    setImg(existNewsKey!==-1? filledHeart:hollowHeart)
+  },[favoritesIDs, props])
   const { created_at, author, story_title } = props;
   
  

@@ -15,3 +15,6 @@ export const OPTIONS_INPUT:OptionI[] = [
       text: "Vue",
     },
 ];
+
+export const MY_FAVES = "My Faves";
+export const ALL = "All";

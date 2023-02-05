@@ -4,7 +4,6 @@ import TapsOptions from "../molecules/TapsOption";
 import CardList from "../organims/CardList";
 import InputList from "../organims/InputList";
 import PaginationPage from "../organims/PaginationPage";
-import Screen1 from "../templates/Screen1"
 import useGetData from "./hooks/useGetData";
 
 

@@ -1,19 +1,23 @@
-import {useState} from 'react';
+
+import useFiltersDispatch from '../../redux/hooks/dispatchers/useFiltersDispatch';
+import useFiltersSelector from '../../redux/hooks/selectors/useFiltersSelector';
 import { TitleTap } from "../atoms/Paragraph"
 import { BoxTaps, Tap } from "../atoms/Taps"
 
-interface ITapsOptionsrops {
-    taps?:string[]
-}
 
-const TapsOptions = (props:ITapsOptionsrops) =>  {
+
+const TapsOptions = () =>  {
+    const {setTapListD} = useFiltersDispatch();
+    const {tap:route} = useFiltersSelector();
     const tapsDefault = ['All', 'My Faves']
-    const {taps=tapsDefault} = props;
-    const [route, setRoute] = useState('')
+
+    const onClick = (tap:string) => {
+        setTapListD(tap) 
+    }
     return(
         <BoxTaps>
-            {taps.map((tap, key )=> (
-                <Tap key={key} active={route === tap} onClick={() => setRoute(tap)}>
+            {tapsDefault.map((tap, key )=> (
+                <Tap key={key} active={route === tap} onClick={() => onClick(tap)}>
                     <TitleTap>{tap}</TitleTap>
                 </Tap>
             ))}
