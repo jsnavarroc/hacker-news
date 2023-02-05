@@ -5,7 +5,13 @@ import { IPaginationProps } from "../../types";
 const usePagination = (props: IPaginationProps) => {
   const [pageSelected, setPageSelected] = useState(0);  
   const {setpageSelectedD} = useFiltersDispatch()
-  const [numberPages, setNumberPages] = useState(() => ({start:0, end:props.pages}))
+  const [numberPages, setNumberPages] = useState({start:0, end:0})
+
+
+  useEffect(() => {
+    setNumberPages({ start: 0, end: props.pages });
+    
+  }, [props.pages])
 
   const onIncrease = () => {
     setPageSelected(prev => ++prev)
@@ -23,7 +29,9 @@ const usePagination = (props: IPaginationProps) => {
  const onDecrease = () => {
     setPageSelected(prev => prev!==0?--prev:0)
     if(pageSelected===numberPages.start && numberPages.start>0){
-      setNumberPages(prev =>({start:prev.start-props.pages, end:prev.end-props.pages}))
+      const less = 50-numberPages.end === 0 ? (50-numberPages.start):props.pages;
+
+      setNumberPages(prev =>({start:prev.start-props.pages, end:prev.end-less}))
     }
   }
   const onAddPages = () => {
@@ -39,7 +47,6 @@ const usePagination = (props: IPaginationProps) => {
   const onSelectPage = useCallback((key:number) => {
     setPageSelected(key)
   }, []); 
-
 
   useEffect(() => {
     setpageSelectedD(pageSelected)
