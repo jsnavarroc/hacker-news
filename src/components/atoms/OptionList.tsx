@@ -1,6 +1,5 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
-import { angular, react, vue } from "../../assets/icons/Icons";
-import { OptionInputText } from "./Paragraph";
 
 
 export const BoxOption = styled.div`
@@ -20,13 +19,11 @@ export const IconOption = styled.img`
 `
 
 
-export const ContainerOptions = styled.div`
+export const ContainerOptions =  styled.div`
   position: relative;
-
   width: 15rem;
 `;
-
-export const ModalContainer = styled.div`
+export const ModalContainer =styled(motion.div)`
   position: absolute;
   left: 28.7%;
   transform: translateY(-24.9%);

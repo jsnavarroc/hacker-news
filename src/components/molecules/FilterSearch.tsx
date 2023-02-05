@@ -1,10 +1,12 @@
 import { ButtonList, ContainerInput, InputFilter, TriangleIcon } from "../atoms/Input";
-
-const FilterSearch = () => {
+interface IFilterSearchProps {
+    onClick:() => void
+}
+const FilterSearch = (props:IFilterSearchProps) => {
     return(
        <ContainerInput>
         <InputFilter/>
-        <ButtonList>
+        <ButtonList onClick={props.onClick}>
             <TriangleIcon />
         </ButtonList>
        </ContainerInput> 

@@ -8,3 +8,13 @@ export interface ICardInfoProps  {
     story_url?: string;
     created_at_i?: number;
   }
+
+  export type OptionI =  {
+    icon: any;
+    text: string;
+  };
+  
+  export interface IOptionsInputProps {
+    options:OptionI[],
+    isOpen:boolean
+  }

@@ -1,28 +1,33 @@
-import { angular, react, vue } from "../../assets/icons/Icons";
 import { BoxOption, ContainerOptions, IconOption, ModalContainer } from "../atoms/OptionList";
 import { OptionInputText } from "../atoms/Paragraph";
+import { IOptionsInputProps } from '../types';
 
-const OptionsInput = () => {
-    const Options = [
-      {
-        icon: angular,
-        text: "Angular",
-      },
-      {
-        icon: react,
-        text: "React",
-      },     
-      {
-        icon: vue,
-        text: "Vue",
-      },
-    ];
 
+const OptionsInput = (props:IOptionsInputProps) => {
+    const {options, isOpen} =props;
+    const containerOptionsVariants = {
+      open: {
+        y: '-25%',
+        opacity: 1,
+        transition: {
+          y: { stiffness: 1000, velocity: -100 },
+        },
+      },
+      closed: {
+        y:  '-25%',
+        opacity: 0,
+         transition: {
+          y: { stiffness: 1000 },
+        },
+      },
+    };
     return (
-      <>
         <ContainerOptions>
-          <ModalContainer>
-            {Options.map((option, key) => (
+          <ModalContainer 
+          variants={containerOptionsVariants}
+          initial="closed"
+          animate={isOpen ? "open" : "closed"}>
+            {options.map((option, key) => (
               <BoxOption key={`${key}-option`}>
                 <IconOption src={option.icon} />
                 <OptionInputText>{option.text}</OptionInputText>
@@ -30,7 +35,6 @@ const OptionsInput = () => {
             ))}
           </ModalContainer>
         </ContainerOptions>
-      </>
     );
 }
 
